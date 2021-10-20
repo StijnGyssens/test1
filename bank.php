@@ -1,5 +1,5 @@
 <?php
-$rek=[
+$rek = [
     'BE75832844265251',
     'BE05352906338775',
     'BE78793503484086',
@@ -22,13 +22,22 @@ $rek=[
     'BE18319809423665'
 ];
 
-function check($lijst){
-    $error=[];
+function check($lijst)
+{
+    $error = [];
     foreach ($lijst as $x) {
-        if (substr($x,4,10)%97!=substr($x,14)){
-            array_push($error,"Bankrekening $x is FOUT HOOR !!!");
+        $bank = substr($x, 4, 10) % 97;
+        $check = substr($x, 14);
+
+        if ($bank==0){
+            $bank=97;
+        }
+
+        if ($bank != $check) {
+            array_push($error, "Bankrekening $x is FOUT HOOR !!!");
         }
     }
-    return join("\n",$error);
+    return join("\n", $error);
 }
+
 print check($rek);
