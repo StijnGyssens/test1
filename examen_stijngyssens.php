@@ -5,15 +5,12 @@ function Align($str, $length, $modus)
     $sp = [];
     $tekst="";
     $space = $length - strlen($str);
-    if ($modus == "L") {
-        for ($i = 0; $i <= $space; $i++) {
-            array_splice($sp, 0, 0, " ");
-        }
+    for ($i = 0; $i < $space; $i++) {
+        array_push($sp, " ");
+    }
+    if ($modus == "L") {        //bij links uitlijnen komen de spaties na de tekst
         $tekst = $str . join("", $sp);
-    } elseif ($modus == "R") {
-        for ($i = 0; $i < $space; $i++) {
-            array_push($sp, " ");
-        }
+    } elseif ($modus == "R") {  //bij rechts uitlijnen komen de spaties voor de tekst
         $tekst = join("", $sp) . $str;
     }
     return $tekst;
